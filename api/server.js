@@ -7,12 +7,15 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-const restricted = require('../middleware/authorize.js')
+const auth = require('../middleware/authorize.js')
 const users = require('../routes/users-router.js')
 const prompts = require('../routes/prompts-router.js')
-const top3 = require('../routes/top-three-router.js')
+const top3 = require('../routes/top-values.js/index.js')
 
-server.use('/api/auth', restricted)
+
+const restrictedMiddleware = require('../middleware/authorize.js')
+
+server.use('/api/auth', auth)
 server.use('/api/users', users)
 server.use('/api/users/projects', prompts)
 server.use('/api/users/top', top3)
