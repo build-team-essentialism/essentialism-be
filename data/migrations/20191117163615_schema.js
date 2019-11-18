@@ -21,10 +21,10 @@ exports.up = function(knex) {
             .onDelete('CASCADE')
             .onUpdate('CASCADE')
     })
-    .createTable('values', tbl => {
+    .createTable('pillars', tbl => {
         tbl.increments()
         tbl
-            .string('value').notNullable()
+            .string('pillar').notNullable()
         tbl
             .integer('user_id')
             .notNullable()
@@ -39,6 +39,6 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('prompts')
-    .dropTableIfExists('values')
+    .dropTableIfExists('pillars')
     .dropTableIfExists('users')
 };
