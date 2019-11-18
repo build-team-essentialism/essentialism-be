@@ -24,7 +24,7 @@ exports.up = function(knex) {
     .createTable('values', tbl => {
         tbl.increments()
         tbl
-            .string('value').notNullable().unique()
+            .string('value').notNullable()
     })
     .createTable('user_values', tbl => {
         tbl.increments()

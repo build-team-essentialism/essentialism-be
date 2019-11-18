@@ -1,5 +1,7 @@
 const db = require('../data/dbConfig.js')
 
+//Will not be using top-values 
+
 module.exports = {
     find,
     findById,
@@ -11,7 +13,7 @@ async function find(id){
     const userTopValues = await db('top_values').select({
         id: 'top_values.id',
         value: 'values.value',
-        username: 'users.username'
+        // username: 'users.username'
     })
     .join('users', 'top_values.user_id', 'users.id')
     .orderBy('id', 'asc')
