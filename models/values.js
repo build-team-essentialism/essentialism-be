@@ -9,3 +9,9 @@ async function get(){
     return values 
 }
 
+async function find(id){
+    const userValues = await db('values').select({
+        id: values.id,
+        name: values.value
+    })
+}

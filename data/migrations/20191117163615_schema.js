@@ -24,7 +24,7 @@ exports.up = function(knex) {
     .createTable('values', tbl => {
         tbl.increments()
         tbl
-            .string('name').notNullable().unique()
+            .string('value').notNullable().unique()
     })
     .createTable('user_values', tbl => {
         tbl.increments()
@@ -72,7 +72,7 @@ exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists('top_values')
     .dropTableIfExists('user_values')
-    .dropTableIfExists('promps')
+    .dropTableIfExists('prompts')
     .dropTableIfExists('values')
     .dropTableIfExists('users')
 };

@@ -10,7 +10,7 @@ server.use(cors())
 const auth = require('../middleware/authorize.js')
 const users = require('../routes/users-router.js')
 const prompts = require('../routes/prompts-router.js')
-const top3 = require('../routes/top-values.js/index.js')
+const top3 = require('../routes/top-values-router.js')
 
 
 const restrictedMiddleware = require('../middleware/authorize.js')

@@ -10,7 +10,7 @@ module.exports = {
 async function find(id){
     const userTopValues = await db('top_values').select({
         id: 'top_values.id',
-        value: 'values.name',
+        value: 'values.value',
         username: 'users.username'
     })
     .join('users', 'top_values.user_id', 'users.id')
@@ -23,7 +23,7 @@ async function find(id){
 async function findById(id){
     const topValues = await db('top_values').select({
         id: 'top_values.id',
-        value: 'values.name',
+        value: 'values.value',
         username: 'users.username'
     })
     .join('users', 'top_values.user_id', 'users.id')
