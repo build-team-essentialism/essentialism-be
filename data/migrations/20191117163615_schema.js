@@ -25,9 +25,6 @@ exports.up = function(knex) {
         tbl.increments()
         tbl
             .string('value').notNullable()
-    })
-    .createTable('user_values', tbl => {
-        tbl.increments()
         tbl
             .integer('user_id')
             .notNullable()
@@ -36,42 +33,11 @@ exports.up = function(knex) {
             .inTable('users')
             .onDelete('CASCADE')
             .onUpdate('CASCADE')
-        tbl
-            .integer('value_id')
-            .notNullable()
-            .unsigned()
-            .references('id')
-            .inTable('values')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE')
-        tbl.unique(['user_id', 'value_id'])
-    })
-    .createTable('top_values', tbl => {
-        tbl.increments()
-        tbl
-            .integer('user_id')
-            .notNullable()
-            .unsigned()
-            .references('id')
-            .inTable('users')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE')
-        tbl
-            .integer('value_id')
-            .notNullable()
-            .unsigned()
-            .references('id')
-            .inTable('values')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE')
-        tbl.unique(['user_id', 'value_id'])
     })
 };
 
 exports.down = function(knex) {
   return knex.schema
-    .dropTableIfExists('top_values')
-    .dropTableIfExists('user_values')
     .dropTableIfExists('prompts')
     .dropTableIfExists('values')
     .dropTableIfExists('users')
