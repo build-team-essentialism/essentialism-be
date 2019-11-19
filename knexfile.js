@@ -1,4 +1,4 @@
-// Update with your config settings.
+const dbConnection = process.env.DATABASE_URL
 
 module.exports = {
 
@@ -39,11 +39,7 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
+    connection: dbConnection,
     pool: {
       min: 2,
       max: 10
