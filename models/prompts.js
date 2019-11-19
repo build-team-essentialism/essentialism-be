@@ -10,13 +10,11 @@ module.exports = {
 
 async function find(id){ //find all prompts for user with {id}
     const prompts = await db('prompts').select({
-        id: 'prompts.id',
+        id: 'id',
         prompt: 'prompts.prompt'
     })
     .orderBy('id', 'asc')
     .where({ user_id: id})
-
-
     return prompts
 }
 
@@ -26,8 +24,7 @@ async function findById(id){
         id: 'prompts.id',
         prompt: 'prompts.prompt'
     })
-    .where({ id })
-
+    .where({ 'prompts.id': id })
     return prompts
 }
 
@@ -45,7 +42,7 @@ async function remove(id) {
     const prompt = await findById(id);
     if (prompt) {
       const deleted = await db('prompts')
-        .where({ id })
+        .where({ 'prompts.id': id })
         .delete();
       if (deleted) {
         return prompt;

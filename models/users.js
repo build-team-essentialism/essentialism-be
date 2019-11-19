@@ -16,11 +16,11 @@ async function find(){
 
 async function userInfoById(id){ 
     //selecting user with id of {id}
-    const userQuery = await db('users').select('username').where({ id }).first()
+    const userQuery = await db('users').select({id: 'id', username: 'username'}).where({ id }).first()
     //select pillars for user_id
-    const userPillars = await db('pillars').select('pillar').where({ user_id: id })
+    const userPillars = await db('pillars').select({id: 'id', pillar: 'pillar'}).where({ user_id: id })
      //select prompts for user_id
-    const userPrompts = await db('prompts').select('prompt').where({ user_id: id })
+    const userPrompts = await db('prompts').select({id: 'id', prompt: 'prompt'}).where({ user_id: id })
 
     const retrieved = await Promise.all([userQuery, userPillars, userPrompts])
     // if(retrieved){

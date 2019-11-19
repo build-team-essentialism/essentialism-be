@@ -2,7 +2,8 @@ const db = require('../data/dbConfig.js')
 
 module.exports = {
     get,
-    find,
+    findUserPrompts,
+    findById,
     remove,
     update,
     create
@@ -13,26 +14,26 @@ async function get(){
     return userPillars 
 }
 
-async function find(id){ //finds all user Pillars to a user id
+async function findUserPrompts(id){ //finds all user Pillars to a user id
     const userPillars = await db('pillars').select({
-        id: 'pillars.id',
-        pillar: 'pillars.pillar',
-        user: 'pillars.user_id' //might delete this later
+        id: 'id',
+        pillar: 'pillar',
+        user: 'user_id' //might delete this later
     })
     // .orderBy('id', 'asc')
-    .where({ 'pillars.user_id': id})
+    .where({ 'user_id': id })
 
     return userPillars
 }
 
 //don't think need all models for pillars since pillars will be predetermined for user to pick
 
-async function findById(id){ //finds value with ID of id, may not need it. 
+async function findById(id){ 
     const value = await db('pillars').select({
-        id: 'pillars.id',
-        value: 'pillars.value'
+        id: 'id',
+        pillar: 'pillar'
     })
-    .where({ 'pillars.id': id }).first()
+    .where({ id }).first()
 
     return value
 }
@@ -48,15 +49,15 @@ async function create(newPillar){
 async function remove(id){
     const userPillar = await findById(id)
     if(userPillar){
-        const removed = await db('pillars').where({ 'pillars.id': id }).delete()
+        const removed = await db('pillars').where({ id }).delete()
         if(removed){
-            return vauserPillarlue
+            return userPillar
         }
     }
 }
 
 async function update(newPillar, id){
-    const newPillar =  await db('pillars').where({ 'pillars.id': id }).update(newValue)
+    const newPillar =  await db('pillars').where({ id }).update(newValue)
 
     if(newPillar){
         const userPillar =  await findById(id)
