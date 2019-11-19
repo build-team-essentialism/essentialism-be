@@ -9,15 +9,15 @@ server.use(helmet())
 server.use(cors())
 
 const auth = require('../middleware/authorize.js')
+
+const authRouter = require('../auth/auth-router.js')
 const users = require('../routes/users-router.js')
 // const prompts = require('../routes/prompts-router.js')
 
 
+server.use('/api/auth', authRouter)
+server.use('/api/users', auth, users)
 
-const restrictedMiddleware = require('../middleware/authorize.js')
-
-server.use('/api/auth', auth)
-server.use('/api/users', users)
 // server.use('/api/prompts', prompts)
 
 

@@ -12,6 +12,6 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ message: "No token provided, invalid request" });
+    res.status(401).json({ message: "Invalid request, no token present" });
   }
 };

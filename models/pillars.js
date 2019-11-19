@@ -2,7 +2,7 @@ const db = require('../data/dbConfig.js')
 
 module.exports = {
     get,
-    findUserPrompts,
+    findUserPillars,
     findById,
     remove,
     update,
@@ -14,7 +14,7 @@ async function get(){
     return userPillars 
 }
 
-async function findUserPrompts(id){ //finds all user Pillars to a user id
+async function findUserPillars(id){ //finds all user Pillars to a user id
     const userPillars = await db('pillars').select({
         id: 'id',
         pillar: 'pillar',
@@ -38,12 +38,23 @@ async function findById(id){
     return value
 }
 
-async function create(newPillar){ 
-    const [id] = await db('pillars').insert(newPillar).returning('id')
-    if(id){
-        const newInsert = await findById(id)
-        return newInsert
-    }
+async function create(newPillarsArrray){ 
+
+    newPillarsArrray.forEach(async (pillar) => {
+        const[id] = await db('pillars').insert(pillar).returning('id')
+        if(id){
+            const newPillar = await findById(id)
+            return newPillar
+        }
+    })
+
+
+
+    // const [id] = await db('pillars').insert(newPillar).returning('id')
+    // if(id){
+    //     const newInsert = await findById(id)
+    //     return newInsert
+    // }
 }
 
 async function remove(id){
@@ -57,9 +68,9 @@ async function remove(id){
 }
 
 async function update(newPillar, id){
-    const newPillar =  await db('pillars').where({ id }).update(newValue)
+    const updatedPillar =  await db('pillars').where({ id }).update(newPillar)
 
-    if(newPillar){
+    if(updatedPillar){
         const userPillar =  await findById(id)
         return userPillar
     }

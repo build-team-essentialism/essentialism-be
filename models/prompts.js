@@ -28,14 +28,21 @@ async function findById(id){
     return prompts
 }
 
-async function create(newPrompt) {
-    const [id] = await db('prompts')
-      .insert(newPrompt)
-      .returning('id');
+async function create(newPromptArray) {
+  newPromptArray.forEach(async (prompt) => {
+    const [id] = await db('prompts').insert(prompt).returning('id');
     if (id) {
       const prompt = await findById(id);
       return prompt;
     }
+  })
+    // const [id] = await db('prompts')
+    //   .insert(newPrompt)
+    //   .returning('id');
+    // if (id) {
+    //   const prompt = await findById(id);
+    //   return prompt;
+    // }
 }
 
 async function remove(id) {
