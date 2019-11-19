@@ -40,19 +40,26 @@ async function findById(id){
 
 async function create(newPillar){ 
 
-    // newPillarsArrray.forEach(async (pillar) => {
-    //     const[id] = await db('pillars').insert(pillar).returning('id')
-    //     if(id){
-    //         const newPillar = await findById(id)
-    //         return newPillar
-    //     }
-    // })
+    /* knex did not like the forEach here
+
+    newPillarsArrray.forEach(async (pillar) => {
+        const[id] = await db('pillars').insert(pillar).returning('id')
+        if(id){
+            const newPillar = await findById(id)
+            return newPillar
+        }
+    })
+    */
 
     const [id] = await db('pillars').insert(newPillar).returning('id')
-    if(id){
-        const newInsert = await findById(id)
-        return newInsert
-    }
+    return id
+
+    /*will not be returning new insert
+    // if(id){
+    //     const newInsert = await findById(id)
+    //     return newInsert
+    // }
+    */
 }
 
 async function remove(id){

@@ -54,10 +54,12 @@ async function findById(id){
 
 async function create(newPrompt) {
   const [id] = await db('prompts').insert(newPrompt).returning('id')
-  if(id){
-      const newInsert = await findById(id)
-      return newInsert
-  }
+  return id
+  
+  // if(id){
+  //     const newInsert = await findById(id)
+  //     return newInsert
+  // }
 }
 
 

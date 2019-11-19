@@ -38,17 +38,20 @@ router.get('/:id', async (req, res) => {
 //   })
 
 router.post('/', async (req,res) => {
-    const { prompt, user_id } = req.body
     try{
-        const newPrompt = await Prompts.create(req.body)
-        if(newPrompt){
-            res.status(201).json(newPrompt)
-        }
+        req.body.forEach(async (prompt) => {
+            await Prompts.create(prompt)
+        })
+
+        res.status(201).json({message: `New prompts were created!`})
+        // const newPrompt = await Prompts.create(req.body)
+        // if(newPrompt){
+        //     res.status(201).json(newPrompt)
+        // }
     }
     catch(error){
         res.status(500).json({ message: `Prompt post failed ${error}.` });
     }
-
 })
 
 router.put('/:id', async (req,res) => {

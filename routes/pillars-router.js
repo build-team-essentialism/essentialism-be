@@ -17,12 +17,17 @@ router.get('/:id', async (req, res) => {
 
 
 router.post('/', async (req,res) => {
-    const { pillar, user_id } = req.body
     try{
-        const newPillar = await Pillars.create(req.body)
-        if(newPillar){
-            res.status(201).json(newPillar)
-        }
+        req.body.forEach(async (pillar) => {
+            await Pillars.create(pillar)
+        
+        })
+        res.status(201).json({message: `New pillars were added!`})
+        // const newPillar = await Pillars.create(req.body)
+
+        // if(newPillar){
+        //     res.status(201).json(newPillar)
+        // }
     }
     catch(error){
         res.status(500).json({ message: `Pillar post failed ${error}.` });
