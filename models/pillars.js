@@ -8,26 +8,26 @@ module.exports = {
 }
 
 async function get(){
-    const values = await db('values')
+    const values = await db('pillars')
     return values 
 }
 
 async function find(id){ //finds all values to a user id
-    const userValues = await db('user_values').select({
-        id: 'value_id',
-        value: 'values.value'
+    const userValues = await db('pillars').select({
+        id: 'pillars.id',
+        pillar: 'pillars.pillar',
+        user: 'pillars.user_id' //might delete this later
     })
-    .join('values', 'user_values.value_id', 'value.id')
-    .orderBy('id', 'asc')
-    .where({ user_id: id})
+    // .orderBy('id', 'asc')
+    .where({ 'pillars.user_id': id})
 
     return userValues
 }
 
-//don't think need all models for values since values will be predetermined for user to pick
+//don't think need all models for pillars since pillars will be predetermined for user to pick
 
-async function findById(id){ //finds value with ID of id
-    const value = await db('values').select({
+async function findById(id){ //finds value with ID of id, may not need it. 
+    const value = await db('pillars').select({
         id: 'values.id',
         value: 'values.value'
     })

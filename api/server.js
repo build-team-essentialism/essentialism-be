@@ -1,6 +1,7 @@
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
+const server = express()
 require('dotenv').config()
 
 server.use(express.json())
@@ -9,15 +10,14 @@ server.use(cors())
 
 const auth = require('../middleware/authorize.js')
 const users = require('../routes/users-router.js')
-const prompts = require('../routes/prompts-router.js')
-const top3 = require('../routes/top-values-router.js')
+// const prompts = require('../routes/prompts-router.js')
+
 
 
 const restrictedMiddleware = require('../middleware/authorize.js')
 
 server.use('/api/auth', auth)
 server.use('/api/users', users)
-server.use('/api/users/projects', prompts)
-server.use('/api/users/top', top3)
+// server.use('/api/prompts', prompts)
 
 module.exports = server
