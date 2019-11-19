@@ -4,16 +4,17 @@ module.exports = {
     get,
     find,
     remove,
-    update
+    update,
+    create
 }
 
 async function get(){
-    const values = await db('pillars')
-    return values 
+    const userPillars = await db('pillars')
+    return userPillars 
 }
 
-async function find(id){ //finds all values to a user id
-    const userValues = await db('pillars').select({
+async function find(id){ //finds all user Pillars to a user id
+    const userPillars = await db('pillars').select({
         id: 'pillars.id',
         pillar: 'pillars.pillar',
         user: 'pillars.user_id' //might delete this later
@@ -21,36 +22,44 @@ async function find(id){ //finds all values to a user id
     // .orderBy('id', 'asc')
     .where({ 'pillars.user_id': id})
 
-    return userValues
+    return userPillars
 }
 
 //don't think need all models for pillars since pillars will be predetermined for user to pick
 
 async function findById(id){ //finds value with ID of id, may not need it. 
     const value = await db('pillars').select({
-        id: 'values.id',
-        value: 'values.value'
+        id: 'pillars.id',
+        value: 'pillars.value'
     })
-    .where({ id }).first()
+    .where({ 'pillars.id': id }).first()
 
     return value
 }
 
+async function create(newPillar){ 
+    const [id] = await db('pillars').insert(newPillar).returning('id')
+    if(id){
+        const newInsert = await findById(id)
+        return newInsert
+    }
+}
+
 async function remove(id){
-    const value = await findById(id)
-    if(value){
-        const removed = await db('values').where({ id }).delete()
+    const userPillar = await findById(id)
+    if(userPillar){
+        const removed = await db('pillars').where({ 'pillars.id': id }).delete()
         if(removed){
-            return value
+            return vauserPillarlue
         }
     }
 }
 
-async function update(newValue, id){
-    const updatedValue =  await db('values').where({ id }).update(newValue)
+async function update(newPillar, id){
+    const newPillar =  await db('pillars').where({ 'pillars.id': id }).update(newValue)
 
-    if(updatedValue){
-        const value =  await findById(id)
-        return value
+    if(newPillar){
+        const userPillar =  await findById(id)
+        return userPillar
     }
 }
