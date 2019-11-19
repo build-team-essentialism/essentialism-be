@@ -20,4 +20,9 @@ server.use('/api/auth', auth)
 server.use('/api/users', users)
 // server.use('/api/prompts', prompts)
 
+
+server.get('/', (req, res) => {
+    res.send('Hello! Clients!!!')
+})
+
 module.exports = server
