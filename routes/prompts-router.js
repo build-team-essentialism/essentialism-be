@@ -6,7 +6,7 @@ const Prompts = require('../models/prompts.js')
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-      const prompt = await Prompts.findById(id)
+      const prompt = await Prompts.find(id)
       if (prompt) {
         res.status(200).json(prompt);
       } else {
@@ -61,7 +61,7 @@ router.put('/:id', async (req,res) => {
     try{
         const editedPrompt = await Prompts.update(prompt, id)
         if(editedPrompt){
-            res.status(200).json(editedPrompt)
+            res.status(201).json(editedPrompt)
         }
         else{
             res.status(404).json({message: `This prompt does not exist`})

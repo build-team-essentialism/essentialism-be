@@ -4,7 +4,7 @@ const Pillars = require('../models/pillars.js')
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-      const pillar = await Pillars.findById(id)
+      const pillar = await Pillars.findUserPillars(id)
       if (pillar) {
         res.status(200).json(pillar);
       } else {
@@ -42,7 +42,7 @@ router.put('/:id', async (req,res) => {
     try{
         const editedPillar = await Pillars.update(pillar,id) 
         if(editedPillar){
-            res.status(200).json(editedPillar)
+            res.status(201).json(editedPillar)
         }
         else{
             res.status(404).json({message: `This pillar does not exist`})

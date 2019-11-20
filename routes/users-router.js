@@ -9,7 +9,7 @@ router.get('/:id', (req,res) => {
     const { id } = req.params
     Users.userInfoById(id)
         .then(user => {
-            res.status(200).json(user)
+            res.status(200).json({ user })
         })
         .catch(error => {
             console.log('error in GET /api/users/:id', error)
@@ -48,7 +48,19 @@ router.get('/:id/pillars', async (req,res) => {
 })
 
 
+router.delete('/:id', async (req,res) => {
+    const { id } = req.params
 
+    try{
+        const deletedUser = await Users.remove(id)
+        if(deletedUser){
+            res.status(200).json(deletedUser)
+        }
+    }
+    catch(error){
+        res.status(500).json({message: `User could not be deleted, error: ${error}`})
+    }
+})
 
 
 module.exports = router

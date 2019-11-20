@@ -18,10 +18,10 @@ async function findUserPillars(id){ //finds all user Pillars to a user id
     const userPillars = await db('pillars').select({
         id: 'id',
         pillar: 'pillar',
-        user: 'user_id' //might delete this later
+        // user: 'user_id' //might delete this later
     })
     // .orderBy('id', 'asc')
-    .where({ 'user_id': id })
+    .where({ user_id: id })
 
     return userPillars
 }
