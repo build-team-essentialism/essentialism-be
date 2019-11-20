@@ -20,7 +20,6 @@ router.post('/', async (req,res) => {
     try{
         req.body.forEach(async (pillar) => {
             await Pillars.create(pillar)
-        
         })
         res.status(201).json({message: `New pillars were added!`})
         // const newPillar = await Pillars.create(req.body)

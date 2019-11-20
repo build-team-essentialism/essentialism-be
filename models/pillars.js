@@ -18,6 +18,7 @@ async function findUserPillars(id){ //finds all user Pillars to a user id
     const userPillars = await db('pillars').select({
         id: 'id',
         pillar: 'pillar',
+        top: 'top'
         // user: 'user_id' //might delete this later
     })
     // .orderBy('id', 'asc')
@@ -31,7 +32,8 @@ async function findUserPillars(id){ //finds all user Pillars to a user id
 async function findById(id){ 
     const value = await db('pillars').select({
         id: 'id',
-        pillar: 'pillar'
+        pillar: 'pillar',
+        top: 'top'
     })
     .where({ id }).first()
 

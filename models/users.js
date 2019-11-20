@@ -6,7 +6,8 @@ module.exports = {
     create,
     remove,
     update,
-    userInfoById
+    userInfoById,
+    topPillars
 }
 
 async function find(){
@@ -18,7 +19,7 @@ async function userInfoById(id){
     //selecting user with id of {id}
     const userQuery = await db('users').select({id: 'id', username: 'username'}).where({ id }).first()
     //select pillars for user_id
-    const userPillars = await db('pillars').select({id: 'id', pillar: 'pillar'}).where({ user_id: id })
+    const userPillars = await db('pillars').select({id: 'id', pillar: 'pillar', top:'top'}).where({ user_id: id })
      //select prompts for user_id
     const userPrompts = await db('prompts').select({id: 'id', prompt: 'prompt'}).where({ user_id: id })
 
@@ -83,4 +84,42 @@ async function update(updates, id){
         const user = await userInfoById(id)
         return user
     }
+}
+
+// async function topPillars(id){
+//     const top = await db('pillars').select({
+//         id: 'id',
+//         pillar: 'pillar',
+//         top: 'top'
+//     })
+//     .where({ user_id: id }).andWhere({ 'top', 'true'})
+// }
+
+// async function topPillars(id){
+//    var subquery = db('pillars').where('top', 'true').select('user_id')
+//    const topThree = await db('pillars').where(id , 'in', subquery)
+//    return topThree
+//    /*{
+//     "message": "User's top values could not be retrived, error: Error: select * from `pillars` where `13` in (select `user_id` from `pillars` where `top` = 'true') - SQLITE_ERROR: no such column: 13"
+// } */
+// }
+
+
+// async function topPillars(id){
+//     var subquery = db('pillars').where({top: true}).select('user_id')
+//     const topThree = await db('pillars').where({user_id: id} , 'in', subquery)
+//     return topThree
+// }
+
+//It's working (in developement at least)
+async function topPillars(id){
+    // var subquery = db('pillars').where({top: true}).select('user_id')
+    const topThree = await db('pillars').select({
+        id: 'id',
+        pillar: 'pillar',
+        top: 'top',
+        user: 'user_id'
+    })
+    .where({user_id: id}).andWhere('top', 'true')
+    return topThree
 }

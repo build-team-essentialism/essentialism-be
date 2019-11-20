@@ -213,18 +213,29 @@ If successful will return status code of 200 (OK) and will return an object of t
 <b>Endpoint:</b> <code>BaseURL/api/pillars</code>
 <br>
 <br>
-Requires an array of objects. Must sepcify user_id and pillar fields: 
+Requires an array of objects. Must sepcify user_id and pillar fields & the top field is optional (but defaults to false): 
 
 ```
 [
-{
-	"pillar": "Family",
-	"user_id": 13
-},
-{
-	"pillar": "Trust",
-	"user_id": 13
-}
+	{
+	"pillar": "Compassion",
+	"user_id": "13",
+	"top": "true"
+	},
+	{
+	"pillar": "Health",
+	"user_id": "13",
+	"top": "true"
+	},
+	{
+	"pillar": "Athleticism",
+	"user_id": "13",
+	"top": "true"
+	},
+	{
+	"pillar": "Productivity",
+	"user_id": "13" //will default to false
+	}
 ]
 ```
 

@@ -62,5 +62,20 @@ router.delete('/:id', async (req,res) => {
     }
 })
 
+router.get('/:id/top', async (req,res) => { //userID
+    const { id } = req.params
+    try{
+        const topPillars = await Users.topPillars(id)
+        console.log("TOP PILLARS ROUTE", topPillars)
+        if(topPillars){
+            res.status(200).json(topPillars)
+        }
+
+    }
+    catch(error){
+        res.status(500).json({message: `User's top values could not be retrived, error: ${error}`})
+    }
+})
+
 
 module.exports = router
