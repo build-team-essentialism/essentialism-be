@@ -18,8 +18,8 @@ const pillars = require('../routes/pillars-router.js')
 server.use('/api/auth', authRouter)
 server.use('/api/users', auth, users)
 
-server.use('/api/prompts', prompts)
-server.use('/api/pillars', pillars)
+server.use('/api/prompts', auth, prompts)
+server.use('/api/pillars', auth, pillars)
 
 
 server.get('/', (req, res) => {

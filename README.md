@@ -6,6 +6,7 @@
 
 <b>BaseURL:</b> https://the-essentials.herokuapp.com
 
+<b>Note:</b> A token is require for all but the Register and Login endpoints!
 <details>
 <summary><b>POST - Register new user</b></summary>
 
