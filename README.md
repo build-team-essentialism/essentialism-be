@@ -219,22 +219,22 @@ Requires an array of objects. Must sepcify user_id and pillar fields & the top f
 [
 	{
 	"pillar": "Compassion",
-	"user_id": "13",
+	"user_id": 13,
 	"top": "true"
 	},
 	{
 	"pillar": "Health",
-	"user_id": "13",
+	"user_id": 13,
 	"top": "true"
 	},
 	{
 	"pillar": "Athleticism",
-	"user_id": "13",
+	"user_id": 13,
 	"top": "true"
 	},
 	{
 	"pillar": "Productivity",
-	"user_id": "13" //will default to false
+	"user_id": 13 //will default to false
 	}
 ]
 ```
