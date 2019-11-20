@@ -242,6 +242,9 @@ No body required in the request.
 <br>
 <br>
 If successful will return status code of 200 (OK) and an array of prompt-objects:
+
+
+
 ```
 [
     {
@@ -254,6 +257,8 @@ If successful will return status code of 200 (OK) and an array of prompt-objects
     }
 ]
 ```
+
+
 </details>
 
 <details>
