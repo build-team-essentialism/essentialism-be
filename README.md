@@ -6,7 +6,7 @@
 
 <b>BaseURL:</b> https://the-essentials.herokuapp.com
 
-<b>Note:</b> A token is require for all but the Register and Login endpoints!
+<b>Note:</b> A token is required in the header for all but the Register and Login endpoints!
 <details>
 <summary><b>POST - Register new user</b></summary>
 
@@ -73,29 +73,109 @@ If successful, will return status code of 200 (OK) and a single user object with
 {
     "user": {
         "id": 13,
-        "username": "Live",
+        "username": "Matthew",
         "pillars": [
             {
                 "id": 49,
-                "pillar": "Grace"
+                "pillar": "Openess",
+                "top": true
+            },
+            {
+                "id": 50,
+                "pillar": "Transperancy",
+                "top": true
             },
             {
                 "id": 51,
-                "pillar": "Art"
+                "pillar": "Travel",
+                "top": true
             },
             {
                 "id": 52,
-                "pillar": "Trust"
+                "pillar": "Balance",
+                "top": false
+            },
+            {
+                "id": 53,
+                "pillar": "Competence",
+                "top": false
+            },
+            {
+                "id": 54,
+                "pillar": "Knowledge",
+                "top": false
+            },
+            {
+                "id": 55,
+                "pillar": "Growth",
+                "top": false
             }
         ],
         "prompts": [
             {
+                "id": 25,
+                "prompt": "I chose these as my top values because ..."
+            },
+            {
                 "id": 26,
-                "prompt": "Some of the current projects I'm"
+                "prompt": "The current projects I'm involved in include..."
             }
         ]
     }
 }
+```
+</details>
+
+
+<details>
+<summary><b>GET - Get top values for specific user</b></summary>
+<br>
+<b>Endpoint:</b> <code>BaseURL/api/users/:userId/top</code>
+<br>
+<br>
+No Body is required: 
+
+If successful will return status code of 200 (OK) and a array of user's top values:
+
+```
+[
+    {
+        "id": 49,
+        "pillar": "Compassion",
+        "top": "true",
+        "user": 13
+    },
+    {
+        "id": 50,
+        "pillar": "Health",
+        "top": "true",
+        "user": 13
+    },
+    {
+        "id": 51,
+        "pillar": "Athleticism",
+        "top": "true",
+        "user": 13
+    },
+    {
+        "id": 53,
+        "pillar": "Love",
+        "top": "true",
+        "user": 13
+    },
+    {
+        "id": 54,
+        "pillar": "Transperancy",
+        "top": "true",
+        "user": 13
+    },
+    {
+        "id": 55,
+        "pillar": "Respect",
+        "top": "true",
+        "user": 13
+    }
+]
 ```
 </details>
 
@@ -113,24 +193,41 @@ No body required in the request.
 If successful will return status code of 200 (OK) and an array of pillar-objects:
 
 ```
-[
-    {
-        "id": 41,
-        "pillar": "Meaning"
-    },
-    {
-        "id": 42,
-        "pillar": "Justice"
-    },
-    {
-        "id": 43,
-        "pillar": "Individuality"
-    },
-    {
-        "id": 44,
-        "pillar": "Adaptability"
-    }
-]
+           {
+                "id": 49,
+                "pillar": "Openess",
+                "top": true
+            },
+            {
+                "id": 50,
+                "pillar": "Transperancy",
+                "top": true
+            },
+            {
+                "id": 51,
+                "pillar": "Travel",
+                "top": true
+            },
+            {
+                "id": 52,
+                "pillar": "Balance",
+                "top": false
+            },
+            {
+                "id": 53,
+                "pillar": "Competence",
+                "top": false
+            },
+            {
+                "id": 54,
+                "pillar": "Knowledge",
+                "top": false
+            },
+            {
+                "id": 55,
+                "pillar": "Growth",
+                "top": false
+            }
 ```
 </details>
 
@@ -176,22 +273,41 @@ If successful will return status code of 200 (OK) and will return an object of t
     "id": 10,
     "username": "Katie",
     "pillars": [
-        {
-            "id": 37,
-            "pillar": "Endurance"
-        },
-        {
-            "id": 38,
-            "pillar": "Wisdom"
-        },
-        {
-            "id": 39,
-            "pillar": "Trust"
-        },
-        {
-            "id": 40,
-            "pillar": "Dedication"
-        }
+           {
+                "id": 49,
+                "pillar": "Openess",
+                "top": true
+            },
+            {
+                "id": 50,
+                "pillar": "Transperancy",
+                "top": true
+            },
+            {
+                "id": 51,
+                "pillar": "Travel",
+                "top": true
+            },
+            {
+                "id": 52,
+                "pillar": "Balance",
+                "top": false
+            },
+            {
+                "id": 53,
+                "pillar": "Competence",
+                "top": false
+            },
+            {
+                "id": 54,
+                "pillar": "Knowledge",
+                "top": false
+            },
+            {
+                "id": 55,
+                "pillar": "Growth",
+                "top": false
+            }
     ],
     "prompts": [
         {
@@ -216,27 +332,41 @@ If successful will return status code of 200 (OK) and will return an object of t
 Requires an array of objects. Must sepcify user_id and pillar fields & the top field is optional (but defaults to false): 
 
 ```
-[
-	{
-	"pillar": "Compassion",
-	"user_id": 13,
-	"top": "true"
-	},
-	{
-	"pillar": "Health",
-	"user_id": 13,
-	"top": "true"
-	},
-	{
-	"pillar": "Athleticism",
-	"user_id": 13,
-	"top": "true"
-	},
-	{
-	"pillar": "Productivity",
-	"user_id": 13 //will default to false
-	}
-]
+           {
+                "id": 49,
+                "pillar": "Openess",
+                "top": true
+            },
+            {
+                "id": 50,
+                "pillar": "Transperancy",
+                "top": true
+            },
+            {
+                "id": 51,
+                "pillar": "Travel",
+                "top": true
+            },
+            {
+                "id": 52,
+                "pillar": "Balance",
+                "top": false
+            },
+            {
+                "id": 53,
+                "pillar": "Competence",
+                "top": false
+            },
+            {
+                "id": 54,
+                "pillar": "Knowledge",
+                "top": false
+            },
+            {
+                "id": 55,
+                "pillar": "Growth"
+                //note: if value for "top" is not specified, will evaulate to "false"!
+            }
 ```
 
 If successful will return status code of 201 (CREATED) and a message:
@@ -282,11 +412,12 @@ message: "New prompts were created!"
 <br>
 
 <br>
-Requires an object with the pillar field being updated:
+Requires an object with the pillar field(s) being updated. Can update "pillar" and/or "top" field:
 
 ```
 {
 	"pillar": "Hospitality"
+    "top": "true"
 }
 ```
 
@@ -296,6 +427,7 @@ If successful will return status code of 201 (CREATED) and a single object of th
 {
     "id": 18,
     "pillar": "Hospitality"
+    "top": "true"
 }
 ```
 </details>
