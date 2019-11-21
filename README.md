@@ -337,43 +337,23 @@ If successful will return status code of 200 (OK) and will return an object of t
 Requires an array of objects. Must sepcify user_id and pillar fields & the top field is optional (but defaults to false): 
 
 ```
-    [  
-        {
-            "id": 49,
-            "pillar": "Openess",
-            "top": true
-        },
-        {
-            "id": 50,
-            "pillar": "Transperancy",
-            "top": true
-        },
-        {
-            "id": 51,
-            "pillar": "Travel",
-            "top": true
-        },
-        {
-            "id": 52,
-            "pillar": "Balance",
-            "top": false
-        },
-        {
-            "id": 53,
-            "pillar": "Competence",
-            "top": false
-        },
-        {
-            "id": 54,
-            "pillar": "Knowledge",
-            "top": false
-        },
-        {
-            "id": 55,
-            "pillar": "Growth"
-            //note: if value for "top" is not specified, will evaulate to "false"!
-        }
-    ] 
+[
+	{
+		"pillar": "Patience",
+		"user_id": 13,
+		"top": "true"
+	},
+	{
+		"pillar": "Kindness",
+		"user_id": 13,
+		"top": "true"
+	},
+		{
+		"pillar": "Balance",
+		"user_id": 13,
+		"top": "true"
+	}
+]
 ```
 
 If successful will return status code of 201 (CREATED) and a message:
