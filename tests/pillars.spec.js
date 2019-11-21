@@ -23,7 +23,7 @@ describe('pillars model business logic', () => {
                 password: '12345'
             }
             const user = await Users.create(newUser)
-            console.log('PILLAR USER', user)
+            // console.log('PILLAR USER', user)
             expect(user.id).toBe(1)
 
             const pillar = {

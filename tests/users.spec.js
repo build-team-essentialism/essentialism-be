@@ -28,7 +28,7 @@ describe('Users model busines logic', () => {
             const user = await create(newUser)
             
             const userTable = await db('users')
-            console.log('USERTABLE', userTable)
+            // console.log('USERTABLE', userTable)
             // expect(user.username).toBe('Mark')
             expect(user.id).toBeDefined()
             expect(userTable).toHaveLength(1)
