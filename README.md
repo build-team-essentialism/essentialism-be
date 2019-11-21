@@ -193,41 +193,43 @@ No body required in the request.
 If successful will return status code of 200 (OK) and an array of pillar-objects:
 
 ```
-           {
-                "id": 49,
-                "pillar": "Openess",
-                "top": true
-            },
-            {
-                "id": 50,
-                "pillar": "Transperancy",
-                "top": true
-            },
-            {
-                "id": 51,
-                "pillar": "Travel",
-                "top": true
-            },
-            {
-                "id": 52,
-                "pillar": "Balance",
-                "top": false
-            },
-            {
-                "id": 53,
-                "pillar": "Competence",
-                "top": false
-            },
-            {
-                "id": 54,
-                "pillar": "Knowledge",
-                "top": false
-            },
-            {
-                "id": 55,
-                "pillar": "Growth",
-                "top": false
-            }
+[
+    {
+        "id": 49,
+        "pillar": "Openess",
+        "top": true
+    },
+    {
+        "id": 50,
+        "pillar": "Transperancy",
+        "top": true
+    },
+    {
+        "id": 51,
+        "pillar": "Travel",
+        "top": true
+    },
+    {
+        "id": 52,
+        "pillar": "Balance",
+        "top": false
+    },
+    {
+        "id": 53,
+        "pillar": "Competence",
+        "top": false
+    },
+    {
+        "id": 54,
+        "pillar": "Knowledge",
+        "top": false
+    },
+    {
+        "id": 55,
+        "pillar": "Growth",
+        "top": false
+    }
+]
 ```
 </details>
 
