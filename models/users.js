@@ -29,22 +29,22 @@ async function userInfoById(id){
     // }
 
     if(retrieved){
-        console.log("RETRIEVED", retrieved)
-        console.log('RETRIEVED[0]', retrieved[0]) //{ username: 'Jane' }
-        console.log("RETRIEVED[1]", retrieved[1]) /* [
-            { pillar: 'Balance' },
-            { pillar: 'Family' },
-            { pillar: 'Career Success' },
-            { pillar: 'Hospitality' }
-          ] */
-        console.log("RETRIEVED[2]", retrieved[2]) // [{ prompt: 'I value these values because they have been integrated into my upbringing'}, {prompt: "The projects I'm involved in are x, y, z"}]
+        // console.log("RETRIEVED", retrieved)
+        // console.log('RETRIEVED[0]', retrieved[0]) //{ username: 'Jane' }
+        // console.log("RETRIEVED[1]", retrieved[1]) /* [
+        //     { pillar: 'Balance' },
+        //     { pillar: 'Family' },
+        //     { pillar: 'Career Success' },
+        //     { pillar: 'Hospitality' }
+        //   ] */
+        // console.log("RETRIEVED[2]", retrieved[2]) // [{ prompt: 'I value these values because they have been integrated into my upbringing'}, {prompt: "The projects I'm involved in are x, y, z"}]
         
         let information = retrieved[0]
         let pillars = retrieved[1]
         let prompts = retrieved[2]
         
         let agregatedInfo = {...information, pillars, prompts}
-        console.log('agregatedInfo', agregatedInfo)
+        // console.log('agregatedInfo', agregatedInfo)
         return agregatedInfo
     }
 }
@@ -113,13 +113,13 @@ async function update(updates, id){
 
 //It's working (in developement at least)
 async function topPillars(id){
-    // var subquery = db('pillars').where({top: true}).select('user_id')
+    const truth = process.env.DB_ENV === 'production' ? 'true' : '1'
     const topThree = await db('pillars').select({
         id: 'id',
         pillar: 'pillar',
         top: 'top',
         user: 'user_id'
     })
-    .where({user_id: id}).andWhere('top', 'true')
+    .where({user_id: id}).andWhere('top', truth)
     return topThree
 }

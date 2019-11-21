@@ -1,7 +1,6 @@
 const db = require('../data/dbConfig.js')
 
 module.exports = {
-    get,
     findUserPillars,
     findById,
     remove,
@@ -9,25 +8,18 @@ module.exports = {
     create
 }
 
-async function get(){
-    const userPillars = await db('pillars')
-    return userPillars 
-}
-
 async function findUserPillars(id){ //finds all user Pillars to a user id
     const userPillars = await db('pillars').select({
         id: 'id',
         pillar: 'pillar',
         top: 'top'
-        // user: 'user_id' //might delete this later
     })
-    // .orderBy('id', 'asc')
     .where({ user_id: id })
 
     return userPillars
 }
 
-//don't think need all models for pillars since pillars will be predetermined for user to pick
+
 
 async function findById(id){ 
     const value = await db('pillars').select({
@@ -56,12 +48,6 @@ async function create(newPillar){
     const [id] = await db('pillars').insert(newPillar).returning('id')
     return id
 
-    /*will not be returning new insert
-    // if(id){
-    //     const newInsert = await findById(id)
-    //     return newInsert
-    // }
-    */
 }
 
 async function remove(id){
