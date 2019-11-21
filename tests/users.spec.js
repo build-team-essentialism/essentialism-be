@@ -169,6 +169,4 @@ describe('Users model busines logic', () => {
 
         })
     })
-
-
 })

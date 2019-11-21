@@ -28,38 +28,9 @@ async function findById(id){
     return prompts
 }
 
-// async function create(newPromptArray) {
-//   newPromptArray.forEach(async (prompt) => {
-//     const [id] = await db('prompts').insert(prompt).returning('id');
-//     if (id) {
-//       const prompt = await findById(id);
-//       return prompt;
-//     }
-//   })
-//     // const [id] = await db('prompts')
-//     //   .insert(newPrompt)
-//     //   .returning('id');
-//     // if (id) {
-//     //   const prompt = await findById(id);
-//     //   return prompt;
-//     // }
-// }
-
-// function create(newPromptArray){
-//   a = JSON.parse(newPromptArray) 
-//   a.forEach(prompt => {
-//     return db('prompts').insert(prompt, 'id'); 
-//   })
-// }
-
 async function create(newPrompt) {
   const [id] = await db('prompts').insert(newPrompt).returning('id')
   return id
-  
-  // if(id){
-  //     const newInsert = await findById(id)
-  //     return newInsert
-  // }
 }
 
 

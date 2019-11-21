@@ -1,7 +1,5 @@
 const db = require('../data/dbConfig.js')
 const Users = require('../models/users.js')
-const server = require('../api/server.js')
-const request = require('supertest')
 const Pillars = require('../models/pillars.js')
 
 jest.mock('../middleware/authorize.js', () => {
