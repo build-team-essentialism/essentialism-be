@@ -58,4 +58,48 @@ describe('user router', () => {
             // console.log("RESPONSE: ", response.body)
         })
     })
+    describe('GET api/users/:id/pillars', () => {
+        it('should return all pillars belonging to a user in JSON', async () => {
+            const newUser = {
+                username: 'Hailey',
+                password: '12345'
+            }
+            await Users.create(newUser)
+            await Pillars.create({pillar: 'My first prompt...', user_id: 1, top: 'true'})
+            await Pillars.create({pillar: 'My second prompt...', user_id: 1, top: 'true'})
+
+            const response = await request(server).get('/api/users/1/pillars').send('1')
+            expect(response.body.length).toBe(2)
+            expect(response.type).toBe('application/json')
+        })
+    })
+
+    describe('DELETE api/users/:id', () => {
+        it('should delete user with id of 2 with status 200', async () => {
+            await Users.create({username: 'Anna', password: '12345'})
+            await Users.create({username: 'Elizabeth', password: '12345'})
+
+            const response = await request(server).delete('/api/users/2').send('2')
+            expect(response.status).toBe(200)
+        })
+    })
+
+    describe('GET api/users/:id/top', () => {
+        it('should get user 1\'s top pillars only (i.e. "top": 1)', async () => {
+            await Users.create({username: 'Anna', password: '12345'})
+            await Pillars.create({pillar: 'My first prompt...', user_id: 1, top: '1'})
+            await Pillars.create({pillar: 'My second prompt...', user_id: 1, top: '1'})
+            // const p = await db('pillars')
+            // expect(p.length).toBe(2)
+            const response = await request(server).get('/api/users/1/top').send('1')
+   
+            // RES.BODY [
+            //     { id: 1, pillar: 'My first prompt...', top: 1, user: 1 },
+            //     { id: 2, pillar: 'My second prompt...', top: 1, user: 1 }
+            //   ]
+            // console.log('RES.TEXT', response.body)
+            expect(response.body[0].top).toEqual(1)
+            expect(response.body[1].top).toEqual(1)
+        })
+    })
 })
