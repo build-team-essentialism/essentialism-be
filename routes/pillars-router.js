@@ -1,20 +1,6 @@
 const router = require('express').Router()
 const Pillars = require('../models/pillars.js')
 
-router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-      const pillar = await Pillars.findUserPillars(id)
-      if (pillar) {
-        res.status(200).json(pillar);
-      } else {
-        res.status(404).json({ message: "Pillar with specified ID does not exist." });
-      }
-    } catch (error) {
-      res.status(500).json({ message: `Pillar request failed ${error}.` });
-    }
-});
-
 
 router.post('/', async (req,res) => {
     try{

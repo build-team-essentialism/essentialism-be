@@ -17,25 +17,7 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: `Prompt request failed ${error}.` });
     }
-  });
-
-
-//   router.post('/', async (req,res) => {
-//       let body = req.body
-    
- 
-//     try{
-//     const newPrompts = await Prompts.create(body)
-//     if(newPrompts){
-//         res.status(201).json(newPrompts)
-//     }
-//     }
-//     catch(error){
-//     console.log(error)
-//     res.status(500).json({ message: `New prompts POST failed: ${error}.` });
-//     }
-      
-//   })
+});
 
 router.post('/', async (req,res) => {
     try{

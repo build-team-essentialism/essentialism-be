@@ -66,7 +66,7 @@ router.get('/:id/top', async (req,res) => { //userID
     const { id } = req.params
     try{
         const topPillars = await Users.topPillars(id)
-        console.log("TOP PILLARS ROUTE", topPillars)
+        // console.log("TOP PILLARS ROUTE", topPillars)
         if(topPillars){
             res.status(200).json(topPillars)
         }
