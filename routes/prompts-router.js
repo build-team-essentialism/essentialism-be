@@ -1,24 +1,6 @@
 const router = require('express').Router()
 const Prompts = require('../models/prompts.js')
 
-
-
-router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-      const prompt = await Prompts.find(id)
-      if (prompt) {
-        res.status(200).json(prompt);
-      } else {
-        res
-          .status(404)
-          .json({ message: "Prompt with specified ID does not exist." });
-      }
-    } catch (error) {
-      res.status(500).json({ message: `Prompt request failed ${error}.` });
-    }
-});
-
 router.post('/', async (req,res) => {
     try{
         req.body.forEach(async (prompt) => {
