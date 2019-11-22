@@ -95,7 +95,3 @@ describe('Prompts model', () => {
         })
     })
 })
-
-
-
-
