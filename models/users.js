@@ -10,8 +10,8 @@ module.exports = {
     topPillars
 }
 
-async function find(){
-    const users = await db('users')
+async function find(id){
+    const users = await db('users').where({id}).first
     return users
 }
 
@@ -49,11 +49,6 @@ async function userInfoById(id){
     }
 }
 
-
-/* async function findById(id){
-    const user = await db('users').select('username').where({ id }).first()
-    return user
-} */
 
 async function findByUsername(username){
     const user = await db('users').where({ username }).first()

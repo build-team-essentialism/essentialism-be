@@ -37,7 +37,7 @@ describe('prompts router', () => {
             const post = [{prompt: 'My first prompt...', user_id: 1},{prompt: 'My second prompt...', user_id: 1}]
             await request(server).post('/api/prompts').send(post)
 
-            const put = {prompt: 'TEST'}
+            const put = {prompt: 'TEST'} 
             const response = await request(server).put('/api/prompts/1').send(put)
             expect(response.status).toBe(201)
         })

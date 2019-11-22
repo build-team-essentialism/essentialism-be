@@ -2,6 +2,12 @@ const router = require('express').Router()
 const Prompts = require('../models/prompts.js')
 
 router.post('/', async (req,res) => {
+    if (Object.keys(req.body).length === 0) {
+        res.status(400).json({ message: "Missing all data." });
+    }
+    if(!req.body[0].prompt){
+        res.status(400).json({message: `The prompt field needs to be filled out!`})
+    }
     try{
         req.body.forEach(async (prompt) => {
             await Prompts.create(prompt)
@@ -43,6 +49,9 @@ router.delete('/:id', async (req,res) => {
         const deletedPrompt = await Prompts.remove(id)
         if(deletedPrompt){
             res.status(200).json(deletedPrompt)
+        }
+        else{
+            res.status(404).json({message: `This prompt does not exist`})
         }
 
     }

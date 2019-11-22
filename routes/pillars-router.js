@@ -3,6 +3,9 @@ const Pillars = require('../models/pillars.js')
 
 
 router.post('/', async (req,res) => {
+    if (Object.keys(req.body).length === 0) {
+        res.status(400).json({ message: "Missing all data." });
+    }
     try{
         req.body.forEach(async (pillar) => {
             await Pillars.create(pillar)
@@ -45,6 +48,9 @@ router.delete('/:id', async (req,res) => {
         const deletedPillar = await Pillars.remove(id)
         if(deletedPillar){
             res.status(200).json(deletedPillar)
+        }
+        else{
+            res.status(404).json({message: `This pillar does not exist`})
         }
 
     }

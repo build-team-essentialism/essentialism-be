@@ -37,7 +37,6 @@ router.get('/:id/pillars', async (req,res) => {
 
     try{
         const userPillars = await Pillars.findUserPillars(id)
-
         if(userPillars){
             res.status(200).json(userPillars)
         }
@@ -76,6 +75,7 @@ router.get('/:id/top', async (req,res) => { //userID
         res.status(500).json({message: `User's top values could not be retrived, error: ${error}`})
     }
 })
+
 
 
 module.exports = router
